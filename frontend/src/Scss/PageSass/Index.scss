@@ -1,0 +1,95 @@
+.navbar {
+  margin: 0.6% 15%;
+  font-size: 1.1rem;
+  .navbar-brand {
+    p {
+      display: inline-block;
+      margin-left: 0.3rem;
+    }
+  }
+  .collapse {
+    .form-inline {
+      .searchContainer {
+        .autoCompleteDivHolder {
+          position: absolute;
+          display: flex;
+          width: 200px;
+          max-width: 200px;
+          .autoCompleteDiv {
+            width: 100%;
+            text-align: left;
+            .autoCompleteDivItem {
+              font-size: 1.2rem;
+              line-height: 1.5;
+              padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+              width: 100%;
+              &:hover {
+                background-color: #007bff;
+                color: white;
+              }
+            }
+          }
+        }
+        .hidden {
+          display: none !important;
+        }
+      }
+    }
+  }
+  .modal {
+    .modal-dialog {
+      max-width: 350px;
+      .modal-content {
+        .modal-header {
+          padding-bottom: 0;
+          .btn {
+            border-radius: 0;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+          }
+        }
+        .modal-body {
+          padding: 1rem 12%;
+          .form-group {
+            margin-bottom: 0.5rem;
+          }
+          .logo-div {
+            text-align: center;
+            margin-bottom: 0.7rem;
+            img {
+              border-radius: 0.5rem;
+            }
+          }
+          .message-text {
+            .success {
+              text-align: center;
+              color: green;
+            }
+            .error {
+              text-align: center;
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+  .signInPopup {
+    cursor: pointer;
+  }
+}
+@media (max-width: 991px) {
+  .navbar {
+    margin: 0.4% 10%;
+  }
+}
+@media (max-width: 500px) {
+  .navbar {
+    margin: 0.2% 5%;
+  }
+}
+@media (max-width: 350px) {
+  .navbar {
+    margin: 0% 0%;
+  }
+}
