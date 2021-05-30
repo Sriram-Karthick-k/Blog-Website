@@ -26,7 +26,7 @@ app.route("/signup")
       }
     })
     }else{
-    res.send({err:"Password should contain one small,capital alphabet,number and symbol."})
+    res.send({err:"Password should contain 8 words, one small,capital alphabet,number and symbol."})
   }
 })
 module.exports=app

@@ -8,7 +8,7 @@ app.route("/Auth")
   try {
     var verified = jwt.verify(token, process.env.JWT_SALT)
   } catch (e) {
-    console.log(e);
+    console.log("jwt expired or invalid one")
   }
   if (verified) {
     res.send({ loggedIn: true })

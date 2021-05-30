@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,10 +12,32 @@ import AdminLogin from "../Admin/AdminLogin"
 import Notfound from "../Notfound"
 import Protected from "./Protected"
 function Routes() {
+  const [userLogin, setUserLogin] = useState(false)
+  useEffect(() => {
+    var promise = new Promise(function (res, rej) {
+      var user = JSON.parse(localStorage.getItem("UserData"))
+      if (user) {
+        res(user)
+      } else {
+        rej()
+      }
+    })
+    promise
+      .then(res => {
+        if (res.userName) {
+          setUserLogin(true)
+        } else {
+          setUserLogin(false)
+        }
+      })
+      .catch(() => {
+        setUserLogin(false)
+      })
+  }, [])
   return (
     <Router >
       <Switch >
-        <Route exact path="/" ><Index /></Route>
+        <Route exact path="/" >{userLogin ? <Protected component={Index} /> : <Index />}</Route>
         <Route exact path="/profile" > <Protected component={Profile} /> </Route>
         <Route exact path="/compose" ><Protected component={Compose} /></Route>
         <Route exact path="/admin" ><Protected component={Admin} /></Route>

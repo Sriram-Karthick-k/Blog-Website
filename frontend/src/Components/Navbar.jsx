@@ -37,6 +37,8 @@ function Navbar(props) {
     if (e.target.id === "signInOrSignUp" || e.target.id === "compose") {
       login.classList = ["modal-title btn btn-primary"]
       signup.classList = ["modal-title btn btn-secondary"]
+      setError(false)
+      setSuccess(false)
       setChangeSignUp("login")
       setSpinner(false)
       return
@@ -45,10 +47,14 @@ function Navbar(props) {
       login.classList = ["modal-title btn btn-primary"]
       signup.classList = ["modal-title btn btn-secondary"]
       setSpinner(false)
+      setError(false)
+      setSuccess(false)
       setChangeSignUp("login")
     } else {
       login.classList = ["modal-title btn btn-secondary"]
       signup.classList = ["modal-title btn btn-primary"]
+      setError(false)
+      setSuccess(false)
       setSpinner(false)
       setChangeSignUp("signup")
     }
