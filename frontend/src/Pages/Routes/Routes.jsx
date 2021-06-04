@@ -14,6 +14,7 @@ import Protected from "./Protected"
 function Routes() {
   const [userLogin, setUserLogin] = useState(false)
   useEffect(() => {
+    //this is used to check wheather the user is logged in while entering the page
     var promise = new Promise(function (res, rej) {
       var user = JSON.parse(localStorage.getItem("UserData"))
       if (user) {

@@ -1,3 +1,4 @@
+//load container to fit whole page in it
 .loadingContainer {
   width: 100vw;
   height: 100vh;
@@ -5,6 +6,7 @@
   position: fixed;
   z-index: 1060 !important;
 }
+//spinner loader color right and left side one
 .loader,
 .loader:before,
 .loader:after {
@@ -14,6 +16,7 @@
   width: 1em;
   height: 4em;
 }
+//spinner loader color center
 .loader {
   color: #ffffff;
   text-indent: -9999em;

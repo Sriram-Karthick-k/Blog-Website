@@ -3,8 +3,8 @@ import Axios from "axios";
 import Loading from "../../Components/Loading"
 function Protected(props) {
   const [Auth, setAuth] = useState(false);
-
   useEffect(() => {
+    //this is used to check wheather the user is logged in or not, if not redirect them to home route
     var data = JSON.parse(localStorage.getItem("UserData"));
     if (data) {
       Axios.get("/Auth?token=" + data.token)

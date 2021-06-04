@@ -1,12 +1,14 @@
 .navbar {
   margin: 0.6% 15%;
   font-size: 1.1rem;
+  //navbar brand
   .navbar-brand {
     p {
       display: inline-block;
       margin-left: 0.3rem;
     }
   }
+  //nav-bar collapse
   .collapse {
     .form-inline {
       .searchContainer {

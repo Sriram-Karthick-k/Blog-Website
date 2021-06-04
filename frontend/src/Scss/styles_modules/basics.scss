@@ -1,17 +1,28 @@
 body {
   overflow-x: hidden;
 }
-
+//scroll bar track
+body::-webkit-scrollbar {
+  background-color: white !important;
+  width: 10px !important;
+}
+//scrollbar
+body::-webkit-scrollbar-thumb {
+  background-color: blue !important;
+  border-radius: 5px !important;
+}
+//prevent user to copy text
 .copy-text {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-
+//used to center text
 .text-center {
   text-align: center;
 }
+//used to center the element to page center
 .page-center {
   top: 50%;
   left: 50%;

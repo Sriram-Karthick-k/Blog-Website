@@ -14,12 +14,17 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }))
+//used to make source as static folder
 app.use(express.static(__dirname + "/source"))
 
 //Routes
+//login
 app.use(require("./routes/login"))
+//signup
 app.use(require("./routes/signup"))
+//authentication
 app.use(require("./routes/auth"))
+//used to run server in port 3001
 app.listen(3001,function(){
   console.log("app is running in 3001")
 })

@@ -5,10 +5,15 @@ var app = express.Router();
 app.route("/Auth")
 .get((req,res)=>{
   var token = req.query.token
-  try {
-    var verified = jwt.verify(token, process.env.JWT_SALT)
-  } catch (e) {
-    console.log("jwt expired or invalid one")
+  if(token){
+    try {
+      //check wheather the jwt token is valid or not
+      var verified = jwt.verify(token, process.env.JWT_SALT)
+    } catch (e) {
+      console.log("jwt expired or invalid one")
+    }
+  }else{
+    res.send({loggedIn:false})
   }
   if (verified) {
     res.send({ loggedIn: true })

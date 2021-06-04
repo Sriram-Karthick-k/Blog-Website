@@ -1,11 +1,13 @@
+//posts
 .posts {
   background-color: green;
   width: auto;
-  margin: 2rem 25%;
+  margin: 2% 25%; //this margin is used to decrease the margin of the whole container
   padding: 1rem 0.8rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
-
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.479);
+  //post content title and image and text
   .post-content {
     .postImage {
       width: 100%;
@@ -34,9 +36,11 @@
       }
     }
   }
+  //post details
   .post-details {
     margin: 1rem 0;
     width: 100%;
+    //post details top which container author image,nickName, time ,like and like, views and dislikes
     .post-details-top {
       width: 100%;
       margin: 0;
@@ -51,6 +55,7 @@
           border-radius: 100%;
           background-color: black;
           overflow: hidden;
+          //image of the author
           .image {
             width: 50px;
             height: 50px;
@@ -85,6 +90,7 @@
         justify-content: flex-end;
         width: 100%;
         cursor: pointer;
+        //icon-style
         .icon {
           color: black;
           display: flex;
@@ -102,6 +108,7 @@
         }
       }
     }
+    //post details bottom which has tags only
     .post-details-bottom {
       width: 100%;
       align-items: center;
@@ -141,13 +148,15 @@
     margin: 2% 20%;
   }
 }
-@media (max-width: 500px) {
+
+@media (max-width: 991px) {
   .posts {
-    margin: 2% 6%;
+    margin: 2% 15%;
   }
 }
 @media (max-width: 880px) {
   .posts {
+    margin: 2% 10%;
     .post-details {
       .post-details-top {
         .like-details {
@@ -194,11 +203,12 @@
     }
   }
 }
-@media (max-width: 350px) {
+@media (max-width: 500px) {
   .posts {
-    margin: 2% 0%;
+    margin: 2% 6%;
   }
 }
+
 @media (max-width: 400px) {
   .posts {
     .post-details {
@@ -225,6 +235,7 @@
 }
 @media (max-width: 350px) {
   .posts {
+    margin: 2% 0%;
     .post-details {
       flex-direction: column;
       .post-details-top {

@@ -1,0 +1,77 @@
+.fr-box {
+  .fr-toolbar {
+    background-color: rgb(205, 216, 205) !important;
+    border: 0px solid green;
+    .fr-command.fr-btn {
+      background-color: white !important;
+      svg {
+        path {
+          fill: black !important;
+        }
+      }
+    }
+    .fr-command.fr-btn:hover {
+      background-color: black !important;
+      svg {
+        path {
+          fill: white !important;
+        }
+      }
+    }
+    .fr-command.fr-btn.fr-disabled {
+      opacity: 0.8 !important;
+    }
+    .fr-more-toolbar {
+      background-color: rgb(205, 216, 205) !important;
+    }
+    .fr-command.fr-btn.fr-active {
+      background-color: rgb(206, 191, 191) !important;
+    }
+  }
+  .fr-quick-insert {
+    .fr-floating-btn {
+      background-color: black !important;
+      svg {
+        path {
+          fill: white !important;
+        }
+      }
+    }
+    .fr-floating-btn:hover {
+      background-color: white !important;
+      svg {
+        path {
+          fill: black !important;
+        }
+      }
+    }
+  }
+  .fr-qi-helper {
+    .fr-btn.fr-floating-btn {
+      background-color: black !important;
+      svg {
+        path {
+          fill: white !important;
+        }
+      }
+    }
+    .fr-btn.fr-floating-btn:hover {
+      background-color: white !important;
+      svg {
+        path {
+          fill: black !important;
+        }
+      }
+    }
+  }
+  .fr-wrapper {
+    background-color: rgb(243, 243, 243) !important;
+  }
+  .fr-second-toolbar {
+    background-color: rgb(255, 255, 255) !important;
+    .fr-counter {
+      color: black !important;
+      cursor: default;
+    }
+  }
+}

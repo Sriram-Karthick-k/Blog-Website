@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react"
 import Axios from "axios"
 import Loading from "./Loading"
 function Navbar(props) {
-  const [changeSignup, setChangeSignUp] = useState(false)
-  const [error, setError] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [logIn, setLogIn] = useState(false)
-  const [spinner, setSpinner] = useState(false)
+  const [changeSignup, setChangeSignUp] = useState(false)//this state is used to change the menu in the signup or login
+  const [error, setError] = useState(false)//used to display error 
+  const [success, setSuccess] = useState(false)//used to display success
+  const [logIn, setLogIn] = useState(false)//used to find wheather the user is logged in or not
+  const [spinner, setSpinner] = useState(false)//used to load spinner prompt animation
+  //this use effect is used to define what should be displayed in the navbar when is user is logged in or logged out
   useEffect(() => {
     setSpinner(true)
     var promise = new Promise(function (res, rej) {
@@ -27,9 +28,11 @@ function Navbar(props) {
         setLogIn(false)
       })
   }, [])
+  //this funciton will be triggered when the user start typing in the search bar of the navbar
   function searchBar(e) {
     console.log(e.target.value)
   }
+  //this function is used to change the login or signup type and to logout user
   function changeSignUpOption(e) {
     setSpinner(true)
     var login = document.getElementById("login")
@@ -64,7 +67,7 @@ function Navbar(props) {
       window.location = "/"
     }
   }
-
+  //this function is used to login or signup and will wait for backend response
   function loginOrSignUpOption() {
     setSpinner(true)
     var data = {}
@@ -109,6 +112,7 @@ function Navbar(props) {
       }
       if (confirmPassword !== password) {
         setError("Password and confirm password should be same.")
+        setSpinner(false)
         return
       }
       Axios
@@ -186,6 +190,7 @@ function Navbar(props) {
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
+      {/* signin or login dialogbox */}
       <div className="modal fade" id="modalCenterSignIn" tabIndex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
@@ -267,6 +272,7 @@ function Navbar(props) {
           </div>
         </div>
       </div>
+      {/* {logout modal} */}
       <div className="modal fade" id="modalCenterLogout" tabIndex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
