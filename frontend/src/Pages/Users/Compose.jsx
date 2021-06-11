@@ -4,6 +4,8 @@ import Navbar from "../../Components/Navbar"
 import Spinner from "../../Components/Loading"
 import compressImage from "../../Components/imageCompression"
 import Editor from "../../Components/Editor"
+import { v4 as uuid } from "uuid"
+
 function Compose() {
   const errorInitial = { image: false, tagsError: false, upload: false }
   const [spinner, setSpinner] = useState(false)//page spinner
@@ -56,7 +58,7 @@ function Compose() {
   async function addImage(e) {
     setSpinner(true)
     const imageFile = e.target.files[0];
-    var compressedImageWithUrl = await compressImage(imageFile)
+    var compressedImageWithUrl = await compressImage(imageFile, .500)
     if (compressedImageWithUrl) {
       setImages([...images, compressedImageWithUrl[0]])
       setImagesUrl([...imagesUrl, compressedImageWithUrl[1]])
@@ -145,30 +147,44 @@ function Compose() {
   function submitPost(e) {
     e.preventDefault()
     setSpinner(true)
-    var articleContainer = document.querySelector(".fr-element").innerHTML
+    var articleContainer = document.querySelector(".fr-element")
     var titleText = document.getElementById("titleText").value
     var userName = JSON.parse(localStorage.getItem("UserData"))
     var token = userName.token
     userName = userName.userName
-    var today = new Date();
-    var hours = today.getHours() < 10 ? today.getHours() + "0" : today.getHours() + ":"
-    var minutes = today.getMinutes() < 10 ? today.getMinutes() + "0" : today.getMinutes();
+    if (titleText.length === 0) {
+      setError({ ...error, upload: "Title must be provided." })
+      setSpinner(false)
+      return
+    }
+    if (articleContainer.textContent.length === 0) {
+      setError({ ...error, upload: "summary should be entered." })
+      setSpinner(false)
+      return
+    }
+    if (!token) {
+      window.location = "/"
+      return
+    }
     var data = {
+      blogId: uuid(),
       userName: userName,
       title: titleText,
-      subject: articleContainer,
+      subject: articleContainer.innerHTML,
       likes: 0,
       views: 0,
-      aboutPost: { time: hours + minutes },
       tagIds: selectedTags,
     }
     var uploadData = new FormData()
     uploadData.append("data", JSON.stringify(data))
-    if (images.length === 0) {
-      uploadData.append("uploadImage", false)
-    }
     uploadData.append("page", "/post/blog")
-    uploadData.append("uploadImage", images)
+    if (images.length === 0) {
+      uploadData.append("uploadImage", [])
+    } else {
+      for (var i = 0; i < images.length; i++) {
+        uploadData.append("uploadImage", images[i])
+      }
+    }
     Axios
       .post("/post/blog", uploadData, {
         headers: {
@@ -179,6 +195,9 @@ function Compose() {
         console.log(res.data)
         if (res.data.error) {
           setError({ ...error, upload: res.data.error })
+        }
+        if (res.data.success) {
+          window.location = "/"
         }
         setSpinner(false)
       })

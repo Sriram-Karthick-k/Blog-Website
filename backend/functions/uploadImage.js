@@ -1,17 +1,23 @@
+const fs=require("fs")
 const multer=require("multer")
+const uuid=require("uuid")
 const storage=multer.diskStorage({
   destination:async function (req, file, cb) {
-    console.log("hello")
-
-    if(req.body.data==="/post/blog"){
-      var path="./source"
-      cb(null,path)
+    if(req.body.page==="/post/blog"){
+      var fileName=JSON.parse(req.body.data)
+      var path="./source/blog/"+fileName.blogId
+      if(fs.existsSync(path)){
+        cb(null,path)
+      }else{
+        fs.mkdirSync(path,{recursive:true})
+        cb(null,path)
+      }
     }
   },
   filename:function(req, file, cb){
-    var fileName=JSON.parse(req.body.data)
-    fileName=fileName.title+fileName.userName
-    cb(null, fileName)
+    if(req.body.page==="/post/blog"){
+      cb(null, uuid.v4()+".png")
+    }
   }
 })
 var uploads = multer({ storage: storage })

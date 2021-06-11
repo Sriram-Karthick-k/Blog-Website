@@ -3,33 +3,39 @@ const BlogInfo=require("../mongodb/BlgoInfo")
 var app = express.Router();
 var dbAlive=require("../functions/checkDb")
 const verification =require("../functions/verification")
-const fs=require("fs")
-const multer=require("multer")
+const removeFile=require("../functions/removeFile")
+const uploads=require("../functions/uploadImage")
+const jwt=require("jsonwebtoken")
 
-// const uploads=require("../functions/uploadImage")
-const storage=multer.diskStorage({
-  destination:async function (req, file, cb) {
-    if(req.body.page==="/post/blog"){
-      var path="./source"
-      cb(null,path)
-    }
-  },
-  filename:function(req, file, cb){
-    if(req.body.page==="/post/blog"){
-      var fileName=JSON.parse(req.body.data)
-    fileName=fileName.title+fileName.userName
-    console.log(fileName)
-    cb(null, fileName+".png")
-    }
-  }
-})
-var uploads = multer({ storage: storage }).array("uploadImage", 5)
 app.route("/post/blog")
-.post(dbAlive,verification,uploads,async (req,res)=>{
+.post(dbAlive,verification,uploads.array("uploadImage",6),async (req,res)=>{
   //used to find the user name is in db or not
-  //console.log(req.files)
-  res.send({error:"testing"})
+  var files=[]
+  const data=JSON.parse(req.body.data)
+  var id=jwt.verify(req.headers.authorization.split(" ")[1], process.env.JWT_SALT)
+  id=id.id
+  //inserting every image into files array
+  for(var i=0;i<req.files.length;i++){
+    files.push(req.files[i].destination+"/"+req.files[i].filename)
+  }
+  var create=new BlogInfo({
+    _id:data.blogId,
+    userId:id,
+    title:data.title,
+    subject:data.subject,
+    likes:data.likes,
+    views:data.views,
+    tagIds:data.tagIds,
+    images:files,
+  })
+  create.save((err,succ)=>{
+    if(err){
+      console.log(err);
+      res.send({error:"The database server is offline."})
+    }else{
+      res.send({success:true})
+    }
+  })
 })
 module.exports=app
 
-// module.exports=uploads
