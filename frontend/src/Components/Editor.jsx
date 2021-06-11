@@ -27,16 +27,22 @@ import 'froala-editor/js/plugins/fullscreen.min.js'
 import 'froala-editor/js/plugins/code_view.min.js'
 import 'froala-editor/css/plugins/code_view.css'
 import 'froala-editor/css/plugins/quick_insert.css'
+import 'froala-editor/js/plugins/image_manager.min'
+import 'froala-editor/css/plugins/image_manager.css'
+import 'froala-editor/js/plugins/paragraph_format.min'
+//import 'froala-editor/css/plugins/paragraph_format'
+
+
 import FroalaEditor from 'react-froala-wysiwyg';
 function Editor() {
   const config = {
     toolbarButtons: {
       'moreText': {
-        'buttons': ['bold', 'h1', 'italic', 'underline', 'fontSize', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting', 'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote'],
+        'buttons': ['bold', 'italic', 'underline', 'fontSize', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting', 'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote'],
         buttonsVisible: 4
       },
       'moreRich': {
-        'buttons': ['fullscreen', "undo", "redo", 'insertTable', 'insertImage', 'insertLink', 'emoticons'],
+        'buttons': ['fullscreen', "undo", "redo", 'insertTable', 'insertLink', 'emoticons'],
         buttonsVisible: 3
       },
     },
@@ -48,7 +54,14 @@ function Editor() {
     attribution: false,
     imageMove: true,
     charCounterCount: true,
-    quickInsertButtons: ['image', 'table']
+    paragraphFormat: {
+      N: 'Normal',
+      H1: 'Heading 1',
+      H2: 'Heading 2',
+      H3: 'Heading 3',
+      H4: 'Heading 4'
+    },
+    quickInsertButtons: ['table'],
   };
   return (
     <FroalaEditor

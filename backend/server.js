@@ -24,6 +24,10 @@ app.use(require("./routes/login"))
 app.use(require("./routes/signup"))
 //authentication
 app.use(require("./routes/auth"))
+//tags
+app.use(require("./routes/tags"))
+//upload
+app.use(require("./routes/Post"))
 //used to run server in port 3001
 app.listen(3001,function(){
   console.log("app is running in 3001")

@@ -12,4 +12,4 @@ var bloginfo = new Schema({
   comments:[{nickName:{type:String,default:"Non user"},text:String}]
 });
 var BlogInfo = mongoose.model("BlogInfo", bloginfo);
-module.exports=UserInfo
+module.exports=BlogInfo

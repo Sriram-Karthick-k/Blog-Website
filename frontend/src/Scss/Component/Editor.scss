@@ -27,6 +27,15 @@
     .fr-command.fr-btn.fr-active {
       background-color: rgb(206, 191, 191) !important;
     }
+    .fr-popup {
+      background-color: green !important;
+      .fr-image-upload-layer {
+        .fr-form:hover {
+          color: white !important;
+          background-color: black !important;
+        }
+      }
+    }
   }
   .fr-quick-insert {
     .fr-floating-btn {
