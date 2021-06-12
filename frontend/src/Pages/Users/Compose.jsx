@@ -171,8 +171,6 @@ function Compose() {
       userName: userName,
       title: titleText,
       subject: articleContainer.innerHTML,
-      likes: 0,
-      views: 0,
       tagIds: selectedTags,
     }
     var uploadData = new FormData()

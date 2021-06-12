@@ -83,8 +83,8 @@ function Navbar(props) {
       Axios
         .post("/login", data)
         .then(res => {
-          if (res.data.err) {
-            setError(res.data.err)
+          if (res.data.error) {
+            setError(res.data.error)
             setSpinner(false)
           }
           if (res.data.token) {
@@ -118,8 +118,8 @@ function Navbar(props) {
       Axios
         .post("/signup", data)
         .then(res => {
-          if (res.data.err) {
-            setError(res.data.err)
+          if (res.data.error) {
+            setError(res.data.error)
             setSpinner(false)
             return
           }

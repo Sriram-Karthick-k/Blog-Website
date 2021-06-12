@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 
 function Posts(props) {
+  useEffect(() => {
+    document.getElementById(props.id).innerHTML = props.subject.slice(0, 250) + "<a href=#>read more...</a>"
+
+  }, [])
   return (
-    <div className="container posts">
+    <div className="container posts" key={props.id}>
       <div className="post-content row">
-        <div className="col col-lg-12 col-md-12 col-sm-12 col-12">
-          <img src={props.image} className="postImage" alt="post" />
-        </div>
+        {
+          props.image ?
+            <div className="col col-lg-12 col-md-12 col-sm-12 col-12">
+              <img src={props.image} className="postImage" alt="post" />
+            </div> :
+            <div className="col col-lg-12 col-md-12 col-sm-12 col-12">
+            </div>
+        }
+
         <div className="post-text-holder col col-lg-12 col-md-12 col-sm-12 col-12">
           <h1 className="post-title" >{props.title}</h1>
-          <p className="post-text-content" >
-            {props.postTextContent}
-            <a href="#">read more...</a>
+          <p className="post-text-content" id={props.id} >
           </p>
         </div>
       </div>
@@ -50,7 +58,7 @@ function Posts(props) {
               props.tags ?
                 props.tags.map((item) => {
                   return (
-                    <a className="tagTitle tags" key={item.tagId} >{item.tagName}</a>
+                    <a className="tagTitle tags" key={item._id} >{item.tagName}</a>
                   )
                 })
                 :

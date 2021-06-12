@@ -3,10 +3,10 @@ const BlogInfo=require("../mongodb/BlgoInfo")
 var app = express.Router();
 var dbAlive=require("../functions/checkDb")
 const verification =require("../functions/verification")
-const removeFile=require("../functions/removeFile")
+var removeFolder=require("../functions/removeFolder")
 const uploads=require("../functions/uploadImage")
 const jwt=require("jsonwebtoken")
-
+//dbAlive
 app.route("/post/blog")
 .post(dbAlive,verification,uploads.array("uploadImage",6),async (req,res)=>{
   //used to find the user name is in db or not
@@ -23,14 +23,24 @@ app.route("/post/blog")
     userId:id,
     title:data.title,
     subject:data.subject,
-    likes:data.likes,
-    views:data.views,
+    likes:0,
+    disLikes:0,
+    views:0,
     tagIds:data.tagIds,
     images:files,
   })
   create.save((err,succ)=>{
     if(err){
-      console.log(err);
+      if(files.length!=0){
+        //remove the folder untill it is deleted
+        count=false
+        while(true){
+          count=removeFolder(req.files[0].destination)
+          if(count){
+            break
+          }
+        }
+      }
       res.send({error:"The database server is offline."})
     }else{
       res.send({success:true})

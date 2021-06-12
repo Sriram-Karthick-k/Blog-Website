@@ -13,7 +13,7 @@ app.route("/signup")
     //checking wheather the user is in db or not
     var findUserName=await UserInfo.find({userName:req.body.userName}).exec()
     if(findUserName.length!==0){
-      res.send({err:"The user name is not available."})
+      res.send({error:"The user name is not available."})
       return
     }
     var create=new UserInfo({
@@ -24,13 +24,13 @@ app.route("/signup")
     //saving the user to the db
     create.save((err,succ)=>{
       if(err){
-        res.send({err:"The database server is offline."})
+        res.send({error:"The database server is offline."})
       }else{
         res.send({success:"Login..."})
       }
     })
     }else{
-    res.send({err:"Password should contain 8 words, one small,capital alphabet,number and symbol."})
+    res.send({error:"Password should contain 8 words, one small,capital alphabet,number and symbol."})
   }
 })
 module.exports=app

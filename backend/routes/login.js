@@ -16,10 +16,10 @@ app.route("/login")
       var token=jwt.sign({id:user._id},process.env.JWT_SALT,{ expiresIn: "3h" })
       res.send({userName:user.userName,nickName:user.nickName,token:token})
     }else{
-      res.send({err:"Invalid passsword..."})
+      res.send({error:"Invalid passsword..."})
     }
   }else{
-    res.send({err:"Invalid user name..."})
+    res.send({error:"Invalid user name..."})
   }
 })
 module.exports=app

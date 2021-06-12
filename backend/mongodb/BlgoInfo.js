@@ -14,6 +14,7 @@ var bloginfo = new Schema({
   title:String,
   subject:String,
   likes:Number,
+  disLikes:Number,
   views:Number,
   aboutPost:{date:{type:String,"default":date},time:{type:String,default:hours+":"+minutes}},
   tagIds:{ type : Array , "default" : [] },

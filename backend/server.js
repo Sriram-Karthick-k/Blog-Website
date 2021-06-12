@@ -28,6 +28,8 @@ app.use(require("./routes/auth"))
 app.use(require("./routes/tags"))
 //upload
 app.use(require("./routes/Post"))
+//getPost
+app.use(require("./routes/getPost"))
 //used to run server in port 3001
 app.listen(3001,function(){
   console.log("app is running in 3001")
