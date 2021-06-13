@@ -5,6 +5,7 @@ import {
   Switch
 } from "react-router-dom";
 import Index from "../Users/Index";
+import Posts from "../Users/Posts"
 import Profile from "../Users/Profile";
 import Compose from "../Users/Compose";
 import Admin from "../Admin/Admin";
@@ -38,7 +39,8 @@ function Routes() {
   return (
     <Router >
       <Switch >
-        <Route exact path="/" >{userLogin ? <Protected component={Index} /> : <Index />}</Route>
+        <Route exact path="/" ><Index /></Route>
+        <Route exact path="/posts/:id" >{userLogin ? <Protected component={Posts} /> : <Posts logged="true" />}</Route>
         <Route exact path="/profile" > <Protected component={Profile} /> </Route>
         <Route exact path="/compose" ><Protected component={Compose} /></Route>
         <Route exact path="/admin" ><Protected component={Admin} /></Route>

@@ -208,7 +208,7 @@ function Navbar(props) {
                     <div className="login">
                       <div>
                         <div className="logo-div">
-                          <img src="images/logo.png" alt="logo" width="50px" height="50px" />
+                          <img src="/images/logo.png" alt="logo" width="50px" height="50px" />
                           <div className="logo-div-text">
                             <h3>Blog</h3>
                           </div>
@@ -238,7 +238,7 @@ function Navbar(props) {
                     <div className="signup">
                       <div>
                         <div className="logo-div">
-                          <img src="images/logo.png" alt="logo" width="50px" height="50px" />
+                          <img src="/images/logo.png" alt="logo" width="50px" height="50px" />
                           <div className="logo-div-text">
                             <h3>Blog</h3>
                           </div>

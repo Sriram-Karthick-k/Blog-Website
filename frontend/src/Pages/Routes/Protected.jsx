@@ -22,7 +22,7 @@ function Protected(props) {
       window.location = "/";
     }
   }, [])
-  return Auth ? <props.component /> : <Loading />
+  return Auth ? <props.component logged="true" /> : <Loading />
 
 }
 export default Protected;

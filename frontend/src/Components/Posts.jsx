@@ -2,23 +2,24 @@ import React, { useEffect } from "react"
 
 function Posts(props) {
   useEffect(() => {
-    document.getElementById(props.id).innerHTML = props.subject.slice(0, 250) + "<a href=#>read more...</a>"
-
+    document.getElementById(props.id).innerHTML = props.subject
+    document.getElementById(props.id).textContent = document.getElementById(props.id).textContent.slice(0, 250)
+    document.getElementById(props.id).innerHTML += "<a href=/posts/" + props.pageId + "/" + props.id + ">read more...</a>"
   }, [])
   return (
-    <div className="container posts" key={props.id}>
+    <div className="container posts">
       <div className="post-content row">
         {
           props.image ?
-            <div className="col col-lg-12 col-md-12 col-sm-12 col-12">
+            <a href={"/posts/" + props.pageId + "/" + props.id} className="col col-lg-12 col-md-12 col-sm-12 col-12">
               <img src={props.image} className="postImage" alt="post" />
-            </div> :
+            </a> :
             <div className="col col-lg-12 col-md-12 col-sm-12 col-12">
             </div>
         }
 
         <div className="post-text-holder col col-lg-12 col-md-12 col-sm-12 col-12">
-          <h1 className="post-title" >{props.title}</h1>
+          <a href={"/posts/" + props.pageId + "/" + props.id}><h1 className="post-title" >{props.title}</h1></a>
           <p className="post-text-content" id={props.id} >
           </p>
         </div>
@@ -26,11 +27,11 @@ function Posts(props) {
       <div className="post-details row">
         <div className="post-details-top row">
           <div className="author-details-holder col col-lg-6 col-md-6 col-sm-12 col-12">
-            <div className="author-image">
+            <a href={"/user/" + props.userId} className="author-image">
               <img className="image" src={props.authorImage} alt="face" />
-            </div>
+            </a>
             <div className="author-details">
-              <div className="nick-name"> <a className="text" href="#">{props.nickName}</a> </div>
+              <div className="nick-name"> <a className="text" href={"/user/" + props.userId}>{props.nickName}</a> </div>
               <div className="time">
                 <p>{props.time}</p>
               </div>
@@ -58,7 +59,7 @@ function Posts(props) {
               props.tags ?
                 props.tags.map((item) => {
                   return (
-                    <a className="tagTitle tags" key={item._id} >{item.tagName}</a>
+                    <a href={"/posts/" + item.tagName} className="tagTitle tags" key={item._id} >{item.tagName}</a>
                   )
                 })
                 :

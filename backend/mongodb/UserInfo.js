@@ -6,6 +6,7 @@ var userinfo = new Schema({
     type:String,
     unique:true
   },
+  profilePath:String,
   nickName:String,
   password:String
 });

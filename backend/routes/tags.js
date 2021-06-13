@@ -7,7 +7,11 @@ const verification =require("../functions/verification")
 app.route("/tags")
 .get(dbAlive,verification,async (req,res)=>{
   //used to find the user name is in db or not
-  var tags=await TagsInfo.find({}).sort({tagName:1}).exec()
-  res.send(tags)
+  try{
+    var tags=await TagsInfo.find({}).sort({tagName:1}).exec()
+    res.send(tags)
+  }catch(error){
+    res.send({error:"The database server is offline"})
+  }
 })
 module.exports=app
