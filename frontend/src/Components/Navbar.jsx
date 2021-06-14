@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Axios from "axios"
 import Loading from "./Loading"
 function Navbar(props) {
-  const [changeSignup, setChangeSignUp] = useState(false)//this state is used to change the menu in the signup or login
+  const [changeSignup, setChangeSignUp] = useState("login")//this state is used to change the menu in the signup or login
   const [error, setError] = useState(false)//used to display error 
   const [success, setSuccess] = useState(false)//used to display success
   const [logIn, setLogIn] = useState(false)//used to find wheather the user is logged in or not
@@ -136,7 +136,7 @@ function Navbar(props) {
   }
   return (
     <div className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         <img src="/images/logo.png" width="30" height="30" alt="" />
         <p>Blog</p>
       </a>
@@ -162,11 +162,11 @@ function Navbar(props) {
           {
             !logIn ?
               <li className="nav-item">
-                <a className="nav-link signInPopup" href="" data-toggle="modal" id="signInOrSignUp" onClick={changeSignUpOption} data-target="#modalCenterSignIn" >Signin/Signup</a>
+                <p className="nav-link signInPopup" data-toggle="modal" id="signInOrSignUp" onClick={changeSignUpOption} data-target="#modalCenterSignIn" >Signin/Signup</p>
               </li>
               :
               <li className="nav-item">
-                <a className="nav-link signInPopup" href="" data-toggle="modal" data-target="#modalCenterLogout" id="logout" >logout</a>
+                <p className="nav-link signInPopup" data-toggle="modal" data-target="#modalCenterLogout" id="logout" >logout</p>
               </li>
           }
         </ul>
@@ -195,8 +195,8 @@ function Navbar(props) {
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title btn" id="login" onClick={changeSignUpOption}  >Login</h5>
-              <h5 className="modal-title btn" id="signup" onClick={changeSignUpOption} >Signup</h5>
+              <h5 className="modal-title btn btn-primary" id="login" onClick={changeSignUpOption}  >Login</h5>
+              <h5 className="modal-title btn btn-secondary" id="signup" onClick={changeSignUpOption} >Signup</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

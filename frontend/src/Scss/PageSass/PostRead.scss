@@ -1,49 +1,43 @@
-//posts
-.posts {
-  background-color: green;
-  width: auto;
-  margin: 2% 25%; //this margin is used to decrease the margin of the whole container
-  padding: 1rem 0.8rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.479);
-  //post content title and image and text
-  .post-content {
+.post-read {
+  width: 100%;
+  .post-read-container {
+    margin: 0.6% 15%;
+    padding: 1% 3%;
+    background-color: black;
     .postImage {
       width: 100%;
       object-fit: fill;
     }
-    .post-text-holder {
-      text-align: justify;
-      .post-title {
-        font-size: 2rem;
-        text-decoration: underline;
-        margin: 0.3rem 0;
-        color: black;
-      }
-      .post-text-content {
-        color: black;
-        line-height: 1.5;
-        a {
-          margin-left: 0.3rem;
-          text-decoration: none;
-          color: white;
-          transition: all 0.3s ease;
-        }
-        a:hover {
-          text-decoration: none;
-        }
-      }
-    }
-  }
-  //post details
-  .post-details {
-    margin: 1rem 0;
-    width: 100%;
-    //post details top which container author image,nickName, time ,like and like, views and dislikes
-    .post-details-top {
+    .heading {
+      text-align: center;
+      color: white;
       width: 100%;
-      margin: 0;
+      text-decoration: underline;
+      margin: 1rem;
+      margin-top: 0;
+    }
+    .col {
+      padding: 0;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-decoration: underline;
+    }
+    .post-content {
+      color: white;
+      line-height: 1.2;
+    }
+    .post-details-top {
+      background-color: white;
+      box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.479);
+      width: 100%;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 0.5rem;
       display: flex;
       justify-content: space-between;
       .author-details-holder {
@@ -110,7 +104,6 @@
         }
       }
     }
-    //post details bottom which has tags only
     .post-details-bottom {
       width: 100%;
       align-items: center;
@@ -119,7 +112,7 @@
       flex-direction: column;
       margin-top: 0.3rem;
       .tagTitle {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         color: white;
         text-align: center;
         text-transform: uppercase;
@@ -146,45 +139,22 @@
     }
   }
 }
-@media (max-width: 1300px) {
-  .posts {
-    margin: 2% 20%;
-  }
-}
-
 @media (max-width: 991px) {
-  .posts {
-    margin: 2% 15%;
-  }
-}
-@media (max-width: 880px) {
-  .posts {
-    margin: 2% 10%;
-    .post-details {
-      .post-details-top {
-        .like-details {
-          .icon {
-            font-size: 1rem;
-            &:not(:last-child) {
-              margin-right: 0.3rem;
-            }
-            .icon-text {
-              margin: 0.1rem;
-            }
-          }
-        }
-      }
+  .post-read {
+    .post-read-container {
+      margin: 0.4% 10%;
     }
   }
 }
 @media (max-width: 766px) {
-  .posts {
-    .post-details {
+  .post-read {
+    .post-read-container {
       flex-direction: column;
       .post-details-top {
         align-items: center;
         .author-details-holder {
           justify-content: center;
+          margin-bottom: 0.5rem;
         }
         .like-details {
           width: 100%;
@@ -207,57 +177,16 @@
   }
 }
 @media (max-width: 500px) {
-  .posts {
-    margin: 2% 6%;
-  }
-}
-
-@media (max-width: 400px) {
-  .posts {
-    .post-details {
-      flex-direction: column;
-      .post-details-top {
-        align-items: center;
-        .author-details-holder {
-          justify-content: center;
-        }
-        .like-details {
-          .icon {
-            font-size: 1.1rem;
-            &:not(:last-child) {
-              margin-right: 0.1rem;
-            }
-            .icon-text {
-              margin-left: 0.1rem;
-            }
-          }
-        }
-      }
+  .post-read {
+    .post-read-container {
+      margin: 0.2% 5%;
     }
   }
 }
 @media (max-width: 350px) {
-  .posts {
-    margin: 2% 0%;
-    .post-details {
-      flex-direction: column;
-      .post-details-top {
-        align-items: center;
-        .author-details-holder {
-          justify-content: center;
-        }
-        .like-details {
-          .icon {
-            font-size: 1rem;
-            &:not(:last-child) {
-              margin-right: 0.1rem;
-            }
-            .icon-text {
-              margin-left: 0.1rem;
-            }
-          }
-        }
-      }
+  .post-read {
+    .post-read-container {
+      margin: 0% 0%;
     }
   }
 }

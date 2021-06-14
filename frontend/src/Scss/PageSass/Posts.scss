@@ -1,4 +1,33 @@
-.noBlogText {
-  text-align: center;
-  color: black;
+.index {
+  .post-container {
+    margin: 2rem 0;
+    .noBlogText {
+      text-align: center;
+      color: black;
+    }
+    #index-post-container {
+      text-align: center;
+    }
+    .load-more {
+      width: 20%;
+      padding: 1rem;
+      background-color: red;
+      color: white;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
+      cursor: pointer;
+      box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.479);
+      border-radius: 5px;
+    }
+  }
+}
+@media (max-width: 535px) {
+  .index {
+    .post-container {
+      .load-more {
+        width: 30%;
+      }
+    }
+  }
 }

@@ -9,29 +9,50 @@ function Index(props) {
   const [posts, setPosts] = useState([])
   const [error, setError] = useState(errorInitial)
   const [spinner, setSpinner] = useState(false)
+  const [loadCount, setLoadCount] = useState(1)
   var { id } = useParams()
   useEffect(() => {
     setSpinner(true)
-    var con = true
-    props.logged
-      ?
-      Axios
-        .get("/getPost?type=" + id)
-        .then(res => {
-          if (res.data.error) {
-            setError(res.data.error)
-          } else {
-            console.log(res.data)
-            setPosts(res.data)
-          }
-          setSpinner(false)
-        })
-        .catch(err => {
-          setSpinner(false)
-        })
-      :
-      con = false
+    Axios
+      .get("/getPost?type=" + id + "&pgno=" + loadCount + "&logged=" + props.logged + "&token=" + props.token)
+      .then(res => {
+        if (res.data.error) {
+          setError(res.data.error)
+        } else {
+          console.log(res.data)
+          setError(errorInitial)
+          setLoadCount(loadCount + 1)
+          setPosts(res.data)
+        }
+        setSpinner(false)
+      })
+      .catch(err => {
+        setSpinner(false)
+      })
   }, [])
+  function loadMore() {
+    setSpinner(true)
+    Axios
+      .get("/getPost?type=" + id + "&pgno=" + loadCount + "&logged=" + props.logged + "&token=" + props.token)
+      .then(res => {
+        if (res.data.error) {
+          setError(res.data.error)
+        } else {
+          console.log(res.data)
+          if (res.data.length === 0) {
+            setLoadCount(false)
+          } else {
+            setLoadCount(loadCount + 1)
+          }
+          setError(errorInitial)
+          setPosts([...posts, ...res.data])
+        }
+        setSpinner(false)
+      })
+      .catch(err => {
+        setSpinner(false)
+      })
+  }
   return (
     <div className="index">
       <Navbar active="home" />
@@ -48,27 +69,41 @@ function Index(props) {
             ?
             <h3 className="noBlogText">No blog found</h3>
             :
-            posts.map((post) => {
-              return (
-                <Posts
-                  key={post._id}
-                  pageId={id}
-                  id={post._id}
-                  subject={post.subject}
-                  image={post.images[0]}
-                  postTextContent={post.subject}
-                  title={post.title}
-                  authorImage={post.authorImage ? post.authorImage : "/images/face.jpg"}
-                  nickName={post.nickName}
-                  time={post.aboutPost.time + "," + post.aboutPost.date}
-                  views={post.views}
-                  likes={post.likes}
-                  disLikes={post.disLikes}
-                  tags={post.tagIds}
-                  userId={post.userId}
-                />
-              )
-            })
+            <div id="index-post-container">
+              {
+                posts.map((post) => {
+                  return (
+                    <Posts
+                      key={post._id}
+                      id={post._id}//postId used to get the posts container
+                      postLink={"/posts/" + id + "/" + post._id}
+                      userLink={"/user/" + post.userId}
+                      subject={post.subject}
+                      image={post.images ? post.images[0] : false}
+                      title={post.title}
+                      authorImage={post.authorImage ? post.authorImage : "/images/face.jpg"}
+                      nickName={post.nickName}
+                      time={post.aboutPost.time + "," + post.aboutPost.date}
+                      views={post.views}
+                      likes={post.likes}
+                      disLikes={post.disLikes}
+                      tags={post.tagIds}
+                      action={post.action}
+                      loggedIn={props.logged}
+                    />
+                  )
+                })
+              }
+              {
+                loadCount
+                  ?
+                  <div onClick={loadMore} className="load-more">
+                    load more
+                  </div>
+                  :
+                  <h3 className="error-text">No more post</h3>
+              }
+            </div>
         }
       </div>
       {

@@ -17,11 +17,11 @@ var bloginfo = new Schema({
   disLikes:Number,
   views:Number,
   authorImage:String,
+  action:{disLiked:Boolean,liked:Boolean,view:Boolean},
   nickName:String,
   aboutPost:{date:{type:String,"default":date},time:{type:String,default:hours+":"+minutes}},
   tagIds:{ type : Array , "default" : [] },
-  images:{type:Array,"default":[]},
-  comments:[{nickName:{type:String,default:"Non user"},text:String}]
+  images:{type:Array,"default":[]}
 });
 var BlogInfo = mongoose.model("BlogInfo", bloginfo);
 module.exports=BlogInfo
