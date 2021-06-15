@@ -1,15 +1,20 @@
 body {
+  background-color: $primary;
   overflow-x: hidden;
 }
 //scroll bar track
 body::-webkit-scrollbar {
-  background-color: white !important;
+  background-color: $scrollbar-bg !important;
   width: 10px !important;
 }
 //scrollbar
 body::-webkit-scrollbar-thumb {
-  background-color: blue !important;
+  background-color: $green !important;
   border-radius: 5px !important;
+}
+//modal
+.modal-backdrop {
+  background-color: $box-shadow !important;
 }
 //prevent user to copy text
 .copy-text {

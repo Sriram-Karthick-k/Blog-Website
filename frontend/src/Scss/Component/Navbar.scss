@@ -1,35 +1,100 @@
 .navbar {
   margin: 0.6% 15%;
   font-size: 1.1rem;
+  background-color: $primary !important;
+  box-shadow: 3px 2px 7px $box-shadow;
+  border-radius: 0.5rem;
   //navbar brand
   .navbar-brand {
     p {
+      color: $green;
       display: inline-block;
       margin-left: 0.3rem;
     }
   }
   //nav-bar collapse
   .collapse {
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          color: $green;
+        }
+      }
+      .active {
+        .nav-link {
+          color: $dark-green;
+        }
+      }
+    }
     .form-inline {
+      .btn {
+        background-color: transparent !important;
+        border: 1px solid $green;
+        color: $green;
+      }
+      .btn:hover {
+        background-color: $green !important;
+        border: 1px solid $green;
+        color: $primary;
+      }
       .searchContainer {
+        .form-control {
+          background-color: $primary;
+          border: 1px solid $green;
+          box-shadow: none;
+          color: $dark-green;
+        }
+        .form-control::placeholder {
+          color: $place-holder;
+        }
         .autoCompleteDivHolder {
+          background-color: $primary;
           position: absolute;
           display: flex;
           width: 200px;
           max-width: 200px;
+          z-index: 100;
+          box-shadow: 3px 5px 10px $box-shadow;
           .autoCompleteDiv {
+            max-height: 200px !important;
+            overflow-y: scroll;
             width: 100%;
             text-align: left;
+            border: 1px solid $green;
+            .form-control {
+              border: none;
+              border-radius: 0;
+            }
+            .form-control:not(:first-child) {
+              border-top: 1px solid $green;
+            }
             .autoCompleteDivItem {
-              font-size: 1.2rem;
+              font-size: 1rem;
+              color: $green;
+              text-decoration: none;
               line-height: 1.5;
               padding: 0.2rem 0.2rem 0.2rem 0.4rem;
               width: 100%;
               &:hover {
-                background-color: #007bff;
-                color: white;
+                background-color: $green;
+                color: $primary;
+                .spanText {
+                  color: $light-green;
+                }
+              }
+              .spanText {
+                font-size: 0.7rem;
+                color: $dark-green;
               }
             }
+          }
+          .autoCompleteDiv::-webkit-scrollbar {
+            background-color: $scrollbar-bg !important;
+            width: 5px !important;
+          }
+          .autoCompleteDiv::-webkit-scrollbar-thumb {
+            background-color: $green !important;
+            border-radius: 5px !important;
           }
         }
         .hidden {
@@ -44,17 +109,46 @@
       margin: 1.5rem auto;
       .modal-content {
         .modal-header {
+          box-shadow: 3px 2px 10px $box-shadow;
+          background-color: $primary;
           padding-bottom: 0;
           .btn {
             border-radius: 0;
             border-top-left-radius: 0.5rem;
             border-top-right-radius: 0.5rem;
+            color: $primary;
+          }
+          .btn-primary {
+            background-color: $green;
+          }
+          .btn-seconday {
+            background-color: $dark-green;
           }
         }
         .modal-body {
+          background-color: $primary;
           padding: 1rem 12%;
           .form-group {
             margin-bottom: 0.5rem;
+            .form-control {
+              background-color: $primary;
+              border: 1px solid $green;
+              box-shadow: none;
+              color: $dark-green;
+            }
+            .form-control::placeholder {
+              color: $place-holder;
+            }
+          }
+          .btn {
+            box-shadow: none;
+            background-color: transparent;
+            color: $green;
+            border: 1px solid $green;
+          }
+          .btn:hover {
+            background-color: $green;
+            color: $primary;
           }
           .logo-div {
             text-align: center;
@@ -66,12 +160,22 @@
           .message-text {
             .success {
               text-align: center;
-              color: green;
+              color: $green;
             }
             .error {
               text-align: center;
-              color: red;
+              color: $red;
             }
+          }
+        }
+        .modal-footer {
+          background-color: $primary;
+          .btn-primary {
+            background-color: $green;
+            color: $primary;
+          }
+          .btn {
+            box-sizing: none;
           }
         }
       }

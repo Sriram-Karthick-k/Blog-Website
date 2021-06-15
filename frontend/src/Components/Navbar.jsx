@@ -7,6 +7,9 @@ function Navbar(props) {
   const [success, setSuccess] = useState(false)//used to display success
   const [logIn, setLogIn] = useState(false)//used to find wheather the user is logged in or not
   const [spinner, setSpinner] = useState(false)//used to load spinner prompt animation
+  const [tagResult, setTagResult] = useState([])
+  const [blogResult, setBlogResult] = useState([])
+  const [userResult, setUserResult] = useState([])
   //this use effect is used to define what should be displayed in the navbar when is user is logged in or logged out
   useEffect(() => {
     setSpinner(true)
@@ -30,7 +33,30 @@ function Navbar(props) {
   }, [])
   //this funciton will be triggered when the user start typing in the search bar of the navbar
   function searchBar(e) {
-    console.log(e.target.value)
+    var resultDiv = document.getElementById("navBarSearch")
+    if (e.target.value.length === 0) {
+      setTagResult([])
+      setBlogResult([])
+      setUserResult([])
+      resultDiv.classList = ["autoCompleteDivHolder mr-sm-2 hidden"]
+    } else {
+      Axios
+        .get("/navBarSearch?text=" + e.target.value)
+        .then(res => {
+          if (res.data.error) {
+            resultDiv.classList = ["autoCompleteDivHolder mr-sm-2 hidden"]
+          } else {
+            setUserResult(res.data.users)
+            setBlogResult(res.data.blogs)
+            setTagResult(res.data.tag)
+            resultDiv.classList = ["autoCompleteDivHolder mr-sm-2"]
+          }
+        })
+        .catch(err => {
+          resultDiv.classList = ["autoCompleteDivHolder mr-sm-2 hidden"]
+          console.log(err)
+        })
+    }
   }
   //this function is used to change the login or signup type and to logout user
   function changeSignUpOption(e) {
@@ -134,6 +160,13 @@ function Navbar(props) {
         .catch(err => console.log(err))
     }
   }
+  function closeSearchResult(e) {
+    // var resultDiv = document.getElementById("navBarSearch")
+    // resultDiv.classList = ["autoCompleteDivHolder hidden mr-sm-2"]
+    // setTagResult([])
+    // setBlogResult([])
+    // setUserResult([])
+  }
   return (
     <div className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
@@ -172,22 +205,40 @@ function Navbar(props) {
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <div className="searchContainer">
-            <input className="form-control mr-sm-2" onChange={searchBar} type="search" placeholder="Search" aria-label="Search" />
-            <div className="autoCompleteDivHolder hidden  mr-sm-2">
+            <input className="form-control mr-sm-2" onBlur={closeSearchResult} onChange={searchBar} type="search" placeholder="Search" aria-label="Search" />
+            <div id="navBarSearch" className="autoCompleteDivHolder hidden mr-sm-2">
               <div className="autoCompleteDiv">
-                <div className="autoCompleteDivItem form-control">
-                  <p>sriram</p>
-                </div>
-                <div className="autoCompleteDivItem form-control">
-                  <p>sriram</p>
-                </div>
-                <div className="autoCompleteDivItem form-control">
-                  <p>sriram</p>
-                </div>
+                {
+                  userResult.map(user => {
+                    return (
+                      <a key={user._id} href={"/user/" + user._id} className="autoCompleteDivItem form-control">
+                        <p>{user.userName} <span className="spanText">in user</span></p>
+                      </a>
+                    )
+                  })
+                }
+                {
+                  blogResult.map(blog => {
+                    return (
+                      <a key={blog._id} href={"/posts/all/" + blog._id} className="autoCompleteDivItem form-control">
+                        <p>{blog.title} <span className="spanText">in blog</span></p>
+                      </a>
+                    )
+                  })
+                }
+                {
+                  tagResult.map((tag, index) => {
+                    return (
+                      <a key={index} href={"/posts/" + tag.tagIds[0].tagName} className="autoCompleteDivItem form-control">
+                        <p>{tag.tagIds[0].tagName} <span className="spanText">in tags</span></p>
+                      </a>
+                    )
+                  })
+                }
               </div>
             </div>
           </div>
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button className="btn  my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
       {/* signin or login dialogbox */}
@@ -204,7 +255,8 @@ function Navbar(props) {
             <div className="modal-body">
               {
                 changeSignup ?
-                  changeSignup === "login" ?
+                  changeSignup === "login"
+                    ?
                     <div className="login">
                       <div>
                         <div className="logo-div">
@@ -231,7 +283,7 @@ function Navbar(props) {
                         <div className="form-group">
                           <input type="password" name="password" className="form-control" id="password" placeholder="Password" />
                         </div>
-                        <button type="submit" className="btn btn-block btn-primary" onClick={loginOrSignUpOption}>Login</button>
+                        <button type="submit" className="btn btn-block" onClick={loginOrSignUpOption}>Login</button>
                       </div>
                     </div>
                     :
@@ -262,7 +314,7 @@ function Navbar(props) {
                         <div className="form-group">
                           <input type="password" name="confirmPassword" className="form-control" id="confirmPassword" placeholder="Confirm Password" />
                         </div>
-                        <button type="submit" className="btn btn-block btn-primary" onClick={loginOrSignUpOption} >Signup</button>
+                        <button type="submit" className="btn btn-block" onClick={loginOrSignUpOption} >Signup</button>
                       </div>
                     </div>
                   :

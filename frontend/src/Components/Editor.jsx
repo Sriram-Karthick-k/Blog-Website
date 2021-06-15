@@ -53,7 +53,6 @@ function Editor() {
     charCounterCount: true,
     attribution: false,
     imageMove: true,
-    charCounterCount: true,
     paragraphFormat: {
       N: 'Normal',
       H1: 'Heading 1',

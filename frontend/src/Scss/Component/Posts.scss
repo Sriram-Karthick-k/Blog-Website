@@ -1,12 +1,12 @@
 //posts
 .posts {
-  background-color: green;
+  background-color: $green;
   width: auto;
   margin: 2% 25%; //this margin is used to decrease the margin of the whole container
   padding: 1rem 0.8rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.479);
+  box-shadow: 3px 5px 5px $box-shadow;
   //post content title and image and text
   .post-content {
     .postImage {
@@ -19,15 +19,15 @@
         font-size: 2rem;
         text-decoration: underline;
         margin: 0.3rem 0;
-        color: black;
+        color: $primary;
       }
       .post-text-content {
-        color: black;
+        color: $content;
         line-height: 1.5;
         a {
           margin-left: 0.3rem;
           text-decoration: none;
-          color: white;
+          color: $primary;
           transition: all 0.3s ease;
         }
         a:hover {
@@ -53,7 +53,7 @@
           width: 50px;
           height: 50px;
           border-radius: 100%;
-          background-color: black;
+          background-color: $green;
           overflow: hidden;
           //image of the author
           .image {
@@ -70,17 +70,17 @@
             text-align: left;
             .text {
               font-size: 1.2rem;
-              color: black;
+              color: $content;
               text-decoration: none;
               font-weight: bold;
               transition: all 0.3s ease;
             }
             .text:hover {
-              color: white;
+              color: $primary;
             }
           }
           .time {
-            color: rgb(32, 29, 29);
+            color: $content;
             text-transform: capitalize;
           }
         }
@@ -93,7 +93,7 @@
         cursor: pointer;
         //icon-style
         .icon {
-          color: black;
+          color: $content;
           display: flex;
           font-size: 1.25rem;
           transition: all 0.3s ease;
@@ -106,7 +106,7 @@
           }
         }
         .active {
-          color: blue;
+          color: $icon;
         }
       }
     }
@@ -120,7 +120,7 @@
       margin-top: 0.3rem;
       .tagTitle {
         font-size: 1.3rem;
-        color: white;
+        color: $primary;
         text-align: center;
         text-transform: uppercase;
         text-decoration: underline;
@@ -134,13 +134,14 @@
           margin: 0 0.2rem;
           margin-top: 0.3rem;
           border-radius: 0.5rem;
-          background-color: black;
+          background-color: $dark-green;
+          color: $green;
           text-decoration: none;
           transition: all 0.3s ease;
         }
         .tags:hover {
-          color: black;
-          background-color: white;
+          color: $dark-green;
+          background-color: $primary;
         }
       }
     }

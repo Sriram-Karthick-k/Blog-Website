@@ -3,7 +3,7 @@
     margin: 2rem 0;
     .noBlogText {
       text-align: center;
-      color: black;
+      color: $content;
     }
     #index-post-container {
       text-align: center;
@@ -11,13 +11,13 @@
     .load-more {
       width: 20%;
       padding: 1rem;
-      background-color: red;
-      color: white;
+      background-color: $green;
+      color: $primary;
       position: relative;
       left: 50%;
       transform: translate(-50%, 0);
       cursor: pointer;
-      box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.479);
+      box-shadow: 3px 5px 10px $box-shadow;
       border-radius: 5px;
     }
   }

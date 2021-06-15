@@ -26,6 +26,8 @@ app.use(require("./routes/signup"))
 app.use(require("./routes/auth"))
 //tags
 app.use(require("./routes/tags"))
+//navbar search
+app.use(require("./routes/NavSearch"))
 //upload
 app.use(require("./routes/Post"))
 //getPost

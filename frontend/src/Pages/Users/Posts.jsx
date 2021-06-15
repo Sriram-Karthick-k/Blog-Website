@@ -19,7 +19,6 @@ function Index(props) {
         if (res.data.error) {
           setError(res.data.error)
         } else {
-          console.log(res.data)
           setError(errorInitial)
           setLoadCount(loadCount + 1)
           setPosts(res.data)

@@ -8,6 +8,7 @@ app.route("/tags")
 .get(dbAlive,verification,async (req,res)=>{
   //used to find the user name is in db or not
   try{
+    //gets all tag in the dbs
     var tags=await TagsInfo.find({}).sort({tagName:1}).exec()
     res.send(tags)
   }catch(error){

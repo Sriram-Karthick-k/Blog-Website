@@ -10,16 +10,15 @@ const jwt=require("jsonwebtoken")
 app.route("/update-profile")
 .post(dbAlive,verification,uploads.single("uploadImage"),async (req,res)=>{
   //used to find the user name is in db or not
-  var id=jwt.verify(req.headers.authorization.split(" ")[1],process.env.JWT_SALT)
-  var path=req.file.destination+"/"+req.file.filename
-  if(id.profilePath){
-    res.send({success:true})
-  }else{
-    await UserInfo.findOneAndUpdate({_id:id.id},{$set:{profilePath:path}})
+  //used to update profile photo of the user
+  var id=jwt.verify(req.headers.authorization.split(" ")[1],process.env.JWT_SALT)//getting user id from the token 
+  var path=req.file.destination+"/"+req.file.filename//getting path of the image
+  if(id){//cheking wheaether the id is there or not
+    await UserInfo.findOneAndUpdate({_id:id.id},{$set:{profilePath:path}})//updating profile picture
     .exec()
     .catch(err=>{
       var cound=false
-      while(true){
+      while(true){//if error means this will remove the file from the folder
         count=removeFolder(req.file.destination)
         if(count){
           break
@@ -28,6 +27,8 @@ app.route("/update-profile")
       res.send({error:"The database server is offline."})
     })
     res.send({success:true})
+  }else{
+    res.send({error:"Invalid jwt, login again..."})
   }
 })
 module.exports=app

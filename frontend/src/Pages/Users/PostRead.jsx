@@ -10,7 +10,6 @@ function PostRead(props) {
   const { blogid } = useParams()
   const [postDetails, setPostDetails] = useState(false)
   useEffect(() => {
-    console.log(props.logged)
     setSpinner(true)
     Axios
       .get("/getBlog?blogId=" + blogid + "&logged=" + props.logged + "&token=" + props.token)
@@ -19,7 +18,6 @@ function PostRead(props) {
           setError({ database: res.data.error })
         } else {
           setError(errorInitial)
-          console.log(res.data)
           setPostDetails(res.data)
           document.getElementById("post-content").innerHTML = res.data.subject
         }

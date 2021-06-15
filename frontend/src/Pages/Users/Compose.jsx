@@ -40,7 +40,6 @@ function Compose() {
             setError({ ...error, tagsError: res.data.error })
             setSpinner(false)
           } else {
-            console.log(res.data)
             setError(errorInitial)
             setTags(res.data)
             setSpinner(false)

@@ -23,6 +23,7 @@ app.route("/login")
       res.send({error:"Invalid user name..."})
     }
   }catch(error){
+    console.log(error)
     res.send({error:"The database server is offline."})
   }
 })

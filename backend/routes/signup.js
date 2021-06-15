@@ -12,6 +12,7 @@ app.route("/signup")
     var hash=pass.hash(req.body.password)
     //checking wheather the user is in db or not
     try{
+      var findUserName=await UserInfo.find({userName:req.body.userName}).exec()
       if(findUserName.length!==0){
         res.send({error:"The user name is not available."})
         return
@@ -30,6 +31,7 @@ app.route("/signup")
         }
       })
     }catch(error){
+      console.log(error)
       res.send({error:"The database server is offline"})
     }
     

@@ -1,20 +1,20 @@
 .fr-box {
   .fr-toolbar {
     background-color: rgb(205, 216, 205) !important;
-    border: 0px solid green;
+    border: 0px;
     .fr-command.fr-btn {
-      background-color: white !important;
+      background-color: $dark-green !important;
       svg {
         path {
-          fill: black !important;
+          fill: $primary !important;
         }
       }
     }
     .fr-command.fr-btn:hover {
-      background-color: black !important;
+      background-color: $primary !important;
       svg {
         path {
-          fill: white !important;
+          fill: $dark-green !important;
         }
       }
     }
@@ -25,10 +25,15 @@
       background-color: rgb(205, 216, 205) !important;
     }
     .fr-command.fr-btn.fr-active {
-      background-color: rgb(206, 191, 191) !important;
+      background-color: $primary !important;
+      svg {
+        path {
+          fill: $dark-green !important;
+        }
+      }
     }
     .fr-popup {
-      background-color: green !important;
+      background-color: $primary !important;
       .fr-image-upload-layer {
         .fr-form:hover {
           color: white !important;
@@ -39,47 +44,47 @@
   }
   .fr-quick-insert {
     .fr-floating-btn {
-      background-color: black !important;
+      background-color: $dark-green !important;
       svg {
         path {
-          fill: white !important;
+          fill: $primary !important;
         }
       }
     }
     .fr-floating-btn:hover {
-      background-color: white !important;
+      background-color: $primary !important;
       svg {
         path {
-          fill: black !important;
+          fill: $dark-green !important;
         }
       }
     }
   }
   .fr-qi-helper {
     .fr-btn.fr-floating-btn {
-      background-color: black !important;
+      background-color: $dark-green !important;
       svg {
         path {
-          fill: white !important;
+          fill: $primary !important;
         }
       }
     }
     .fr-btn.fr-floating-btn:hover {
-      background-color: white !important;
+      background-color: $primary !important;
       svg {
         path {
-          fill: black !important;
+          fill: $dark-green !important;
         }
       }
     }
   }
   .fr-wrapper {
-    background-color: rgb(243, 243, 243) !important;
+    background-color: $primary !important;
   }
   .fr-second-toolbar {
-    background-color: rgb(255, 255, 255) !important;
+    background-color: rgb(205, 216, 205) !important;
     .fr-counter {
-      color: black !important;
+      color: $dark-green !important;
       cursor: default;
     }
   }
