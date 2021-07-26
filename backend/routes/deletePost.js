@@ -1,5 +1,6 @@
 const express=require("express")
 const BlogInfo=require("../mongodb/BlgoInfo")
+const LikeInfo=require("../mongodb/likes")
 var app = express.Router();
 var dbAlive=require("../functions/checkDb")
 var removeFolder=require("../functions/removeFolder")
@@ -19,6 +20,12 @@ app.route("/delete-post")
     }
     //deleting the blog
     await BlogInfo.findOneAndDelete({_id:req.body.id})
+    .exec()
+    .catch(err=>{
+      res.send({error:"The database server is offline"})
+    })
+    //deleting the blog likes and views
+    await LikeInfo.deleteMany({blogId:req.body.id})
     .exec()
     .catch(err=>{
       res.send({error:"The database server is offline"})
