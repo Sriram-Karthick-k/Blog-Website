@@ -4,7 +4,7 @@
 
 ### Login
 
-<img src="website_images/login.gif" width="900">
+<img src="website_images/login.png" width="900">
 
 ### Signup
 
